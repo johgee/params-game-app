@@ -4,9 +4,16 @@ class ParamsExamplesController < ApplicationController
     render json: {message: "your name is #{input_name}", message2: "your number is #{params['x']}"}
   end
 
-  def enter_name
-    enter_name = params["a"]
-    render json: {message: "your name starts with the first letter of the alphabet!"}
+  def name_game
+    user_given_name = params["my_name"].upcase
+
+    if user_given_name.starts_with?("A")
+      output_message = "hey your name starts with the first letter of the alphabet"
+    else 
+      output_message = "cool beans"
+    end 
+
+    render json: {message: "your name is #{user_given_name} #{output_message}"}
   end
 
   def number_game
